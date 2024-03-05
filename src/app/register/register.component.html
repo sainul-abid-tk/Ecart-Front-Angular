@@ -1,0 +1,26 @@
+<div style="height: 100vh;" class="d-flex justify-content-center align-items-center ">
+    <div class="w-75 row shadow-lg ">
+        <div class="col-lg-6 col-md-12 p-5 d-flex justify-content-center align-content-center ">
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-sign-up-4489361-3723268.png" alt="">
+        </div>
+        <div class="col-lg-6 col-md-12 d-flex bg-info  flex-column  justify-content-center align-content-center px-5 ">
+            <h1 class="text-center mb-5 ">Welcome User!!!</h1>
+            <form [formGroup]="registerForm" action="">
+                <input type="text" formControlName="username" name="username" placeholder="Enter Username" class="form-control w-100  ">
+                <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class=" text-danger fw-bolder ">*Invalid Username</div>
+                <input type="text" formControlName="email" name="email" placeholder="Enter Email" class="form-control w-100 mt-4 ">
+                <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="mb-3 text-danger fw-bolder">*Invalid Email</div>
+                <input type="password"  formControlName="password" name="password" placeholder="Enter password" class="form-control  mt-4 ">
+                <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="mb-3 text-danger fw-bolder">*Invalid password</div>
+                <button (click)="register()" class="btn w-100  btn-success   mt-3">SignUp</button>
+                <h6 class=" mt-2 ">Already A User?Click here to <a class="text-warning fw-bolder" routerLink="/login" style="cursor: pointer;">Login</a></h6>
+                <p class="text-center mt-2"><i class="fa-solid fa-house fs-4  " style="cursor: pointer;" routerLink="/"></i></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<pre>{{registerForm.value.username}}</pre>
+<pre>{{registerForm.value.email}}</pre>
+<pre>{{registerForm.value.password}}</pre>
+

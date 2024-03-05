@@ -1,0 +1,19 @@
+<div style="height: 100vh;" class="d-flex justify-content-center align-items-center ">
+    <div class="w-75 row shadow-lg ">
+        <div class="col-lg-6 col-md-12  d-flex justify-content-center align-content-center ">
+            <img src="https://image.freepik.com/free-vector/illustration-cartoon-female-user-entering-login_241107-682.jpg" alt="">
+        </div>
+        <div class="col-lg-6 col-md-12 d-flex bg-info  flex-column  justify-content-center align-content-center px-5 ">
+            <h1 class="text-center mb-5 ">Welcome User!!!</h1>
+            <form [formGroup]="loginForm" action="">
+                <input type="text" formControlName="email" name="email" placeholder="Enter Email" class="form-control w-100 mb-4 ">
+                <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="text-danger fw-bolder">*Invalid Email</div>
+                <input type="text" formControlName="password" name="password" placeholder="Enter password" class="form-control  mb-4 ">
+                <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="text-danger fw-bolder">*Invalid Password</div>
+                <button (click)="login()" class="btn w-100  btn-success   mb-3">Login</button>
+                <h6>New User?Click here to <a class="text-warning fw-bolder mb-2" routerLink="/register" style="cursor: pointer;">Register</a></h6>
+                <p  class="text-center"><i class="fa-solid fa-house fs-4  " style="cursor: pointer;" routerLink="/"></i></p>
+            </form>
+        </div>
+    </div>
+</div>
