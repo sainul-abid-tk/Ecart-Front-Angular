@@ -1,1 +1,70 @@
-<p>cart works!</p>
+<app-header></app-header>
+<section class="py-3">
+    <div style="height:100vh;" class="px-4 px-lg-5 mt-5 d-flex justify-content-center align-items-center">
+        <div style="height:100vh;" *ngIf="allProducts!=''" class="row w-100  mt-5 d-flex justify-content-center align-items-center">
+            <div  class="col-lg-8 ">
+                <table class="table border rounded-3 shadow-lg   table-dark table-hover">
+                    <thead  class="table-primary ">
+                        <tr class="fs-5 ">
+                          <th scope="col">#</th>
+                          <th scope="col">Product</th>
+                          <th scope="col">Image</th>
+                          <th scope="col" class="ps-4 ">Quantity</th>
+                          <th scope="col">Price</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let product of allProducts;let i=index ">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{product.title.slice(0,20)}}...</td>
+                          <td><img width="60px" height="60px" [src]="product.image" alt=""></td>
+                          <td >
+                            <div class="d-flex align-items-center ">
+                                <button (click)="decrementCart(product._id)" class="btn-link btn text-decoration-none fw-bolder text-danger fs-4 ">-</button>
+                                <input type="text" [value]="product.quantity" style="width: 40px;height: 30px;" class="form-control" readonly name="" id="">
+                                <button (click)="incrementCart(product._id)" class="btn-link btn text-decoration-none  fw-bolder text-success fs-4 ">+</button>
+                            </div>
+                          </td>
+                          <td>{{product.totalPrice}}</td>
+                          <td>
+                            <button (click)="removeCart(product._id)" class="btn"><i class="fa-solid fa-trash text-danger fs-5"></i></button>
+                          </td>
+                        </tr>
+                  </table>
+                  <div class="float-end mt-2">
+                    <button (click)="emptyCart()" class="btn btn-danger me-3 ">EMPTY CART</button>
+                    <button routerLink="/" class="btn btn-success ">SHOPE MORE</button>
+                  </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="border rounded p-3 w-100 ">
+                <h3>Grand Total :<span class="text-danger">$ {{cartTotal}}</span></h3>
+                <h5 *ngIf="!coupenStatus" (click)="getCoupen()" class="mt-3">Click here to view <span style="cursor: pointer;" class="link-primary"><i class="fa-solid fa-tag"></i>Offers</span></h5>
+                <!-- gift coupens -->
+                <div *ngIf="coupenStatus" class="d-flex justify-content-evenly mt-3">
+                  <ng-container  *ngIf="cartTotal>50 && cartTotal<=250 && !coupenClickStatus">
+                    <img (click)="discount(10)" style="cursor: pointer;"  width="200px" src="https://www.pngarts.com/files/8/10-off-Transparent-Image.png" alt="">
+                  </ng-container>
+                  <ng-container  *ngIf="cartTotal>250 && cartTotal<=500 &&!coupenClickStatus">
+                    <img (click)="discount(20)" style="cursor: pointer;"  width="200px" src="https://www.freeiconspng.com/thumbs/20-off-png/circle-20-off-png-1.png" alt="">
+                  </ng-container>
+                  <ng-container  *ngIf="cartTotal>500 &&!coupenClickStatus">
+                    <img (click)="discount(30)" style="cursor: pointer;"  width="200px" src="https://static.webshopapp.com/shops/034611/files/162021164/discount-30.png" alt="">
+                  </ng-container>
+                 
+                </div>
+                <hr>
+                <div class="d-grid">
+                  <button (click)="checkOut()" class="btn btn-success">Check Out</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div  class="d-flex flex-column  justify-content-center align-items-center " *ngIf="allProducts=='' ">
+            <img width="600px"  src="https://media.tenor.com/images/dff9c373a6b6c820c4ce7827579759dd/tenor.gif" alt="">
+            <h2 class="fw-bolder text-danger mt-3 fst-italic ">Your Cart Is Empty.......</h2>
+        </div>
+    </div>
+</section>
+
