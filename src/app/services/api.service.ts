@@ -9,7 +9,7 @@ export class ApiService {
   searchTerm=new BehaviorSubject("")
   cartCount=new BehaviorSubject(0)
   wishlistCount=new BehaviorSubject(0)
-  SERVER_URL="http://localhost:3000"
+  SERVER_URL="https://ecart-back-angular.onrender.com"
 
   constructor(private http:HttpClient) {
     if(sessionStorage.getItem("token")){
